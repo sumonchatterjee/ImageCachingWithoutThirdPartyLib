@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import imageloading.com.imagedownloadingcachinglibrary.imageUtils.ImageLoader;
+import imageloading.com.imagedownloadingcachinglibrary.imageUtils.TCImageLoader;
 import imageloading.com.imageloadingstuff.R;
 
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ProgressBar imageProgress;
     ImageLoader imgLoader;
+    TCImageLoader img;
 
     String[] fruitArray = {"http://i.imgur.com/DvpvklR.png", "http://www.androidbegin.com/wp-content/uploads/2013/07/HD-Logo.gif", "https://api.androidhive.info/images/sample.jpg",
                              "http://pixel.nymag.com/imgs/daily/vulture/2016/08/11/11-obama-sex-playlist.w529.h529.jpg","https://pbs.twimg.com/profile_images/556495456805453826/wKEOCDN0_400x400.png"};
@@ -74,14 +76,16 @@ public class MainActivity extends AppCompatActivity {
     private void initilizeImageLoader(){
         imgView = (ImageView) findViewById(R.id.imageView1);
         imageProgress = (ProgressBar)findViewById(R.id.progressBar) ;
-        imgLoader = new ImageLoader(this);
+        //imgLoader = new ImageLoader(this);
+        img = new TCImageLoader(this);
     }
 
     public void btnLoadImageClick(View v){
 
-        if(imgLoader!=null) {
+        if(img!=null) {
             if(i < fruitArray.length) {
-               imgLoader.DisplayImage(fruitArray[i], imgView);
+              // imgLoader.DisplayImage(fruitArray[i], imgView);
+                img.display(fruitArray[i],imgView,R.drawable.user);
                 i++;
             }
         }
